@@ -9,13 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 import net.miginfocom.swing.MigLayout;
 
@@ -25,10 +19,8 @@ public class CreateBankDialog extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private final static int TABLE_SIZE = 29;
 	Random rand = new Random();
-	
 	ArrayList<BankAccount> accountList;
-
-	HashMap<Integer, BankAccount> table = new HashMap<Integer, BankAccount>();
+	private HashMap<Integer, BankAccount> table = new HashMap<Integer, BankAccount>();
 	
 	
 	public void put(int key, BankAccount value){
@@ -40,16 +32,11 @@ public class CreateBankDialog extends JFrame {
 		table.put(hash, value);
 	}
 	
-	
-	
-	
 	// Constructor code based on that for the Create and Edit dialog classes in the Shapes exercise.
 
 	JLabel accountIDLabel, accountNumberLabel, firstNameLabel, surnameLabel, accountTypeLabel, balanceLabel, overdraftLabel;
-	
-	
 	JComboBox<?> comboBox;
-	JTextField accountNumberTextField;
+	private JTextField accountNumberTextField;
 	final JTextField firstNameTextField, surnameTextField, accountTypeTextField, balanceTextField, overdraftTextField;
 	
 	CreateBankDialog(HashMap<Integer, BankAccount> accounts) {
@@ -61,49 +48,40 @@ public class CreateBankDialog extends JFrame {
 		setLayout(new BorderLayout());
 		
 		JPanel dataPanel = new JPanel(new MigLayout());
-		
-		
-		
-		
-		
-		
-		
 		String[] comboTypes = {"Current", "Deposit"};
 		
 		final JComboBox<?> comboBox = new JComboBox<Object>(comboTypes);
 		
-		
 		accountNumberLabel = new JLabel("Photograph file name: ");
 		accountNumberTextField = new JTextField(15);
-		
 		accountNumberLabel = new JLabel("Account Number: ");
 		accountNumberTextField = new JTextField(15);
 		accountNumberTextField.setEditable(true);
 		
 		dataPanel.add(accountNumberLabel, "growx, pushx");
 		dataPanel.add(accountNumberTextField, "growx, pushx, wrap");
-
+		
 		surnameLabel = new JLabel("Last Name: ");
 		surnameTextField = new JTextField(15);
 		surnameTextField.setEditable(true);
 		
 		dataPanel.add(surnameLabel, "growx, pushx");
 		dataPanel.add(surnameTextField, "growx, pushx, wrap");
-
+		
 		firstNameLabel = new JLabel("First Name: ");
 		firstNameTextField = new JTextField(15);
 		firstNameTextField.setEditable(true);
 		
 		dataPanel.add(firstNameLabel, "growx, pushx");
 		dataPanel.add(firstNameTextField, "growx, pushx, wrap");
-
+		
 		accountTypeLabel = new JLabel("Account Type: ");
 		accountTypeTextField = new JTextField(5);
 		accountTypeTextField.setEditable(true);
 		
 		dataPanel.add(accountTypeLabel, "growx, pushx");	
 		dataPanel.add(comboBox, "growx, pushx, wrap");
-
+		
 		balanceLabel = new JLabel("Balance: ");
 		balanceTextField = new JTextField(10);
 		balanceTextField.setText("0.0");
@@ -121,31 +99,22 @@ public class CreateBankDialog extends JFrame {
 		dataPanel.add(overdraftTextField, "growx, pushx, wrap");
 		
 		add(dataPanel, BorderLayout.CENTER);
-		
 		JPanel buttonPanel = new JPanel(new FlowLayout());
 		JButton addButton = new JButton("Add");
 		JButton cancelButton = new JButton("Cancel");
 		
 		buttonPanel.add(addButton);
 		buttonPanel.add(cancelButton);
-		
 		add(buttonPanel, BorderLayout.SOUTH);
 		
 		addButton.addActionListener(new ActionListener() {
+			
 			public void actionPerformed(ActionEvent e) {
 				
-				
-				
 				String accountNumber = accountNumberTextField.getText();
-				
-				
-							
-				
 				String surname = surnameTextField.getText();
 				String firstName = firstNameTextField.getText();
-			
 				String accountType = comboBox.getSelectedItem().toString();
-				
 				if (accountNumber != null && accountNumber.length()==8 && surname != null && firstName != null && accountType != null) {
 					try {
 						
