@@ -596,33 +596,33 @@ public class BankApplication extends JFrame {
 	private static final int NUMBER_RECORDS = 100;
 
 	
-	public static void openFileRead()
-	   {
-		
-		table.clear();
-			
-		fc = new JFileChooser();
-		int returnVal = fc.showOpenDialog(null);
-		 
-        if (returnVal == JFileChooser.APPROVE_OPTION) {
-            File file = fc.getSelectedFile();
-
-        } else {
-                }
-
-			
-		      try // open file
-		      {
-		    	  if(fc.getSelectedFile()!=null)
-		    		  input = new RandomAccessFile( fc.getSelectedFile(), "r" );
-		      } // end try
-		      catch ( IOException ioException )
-		      {
-		    	  JOptionPane.showMessageDialog(null, "File Does Not Exist.");
-		      } // end catch
-			
-	   } // end method openFile
-	
+//	public static void openFileRead()
+//	   {
+//		
+//		table.clear();
+//			
+//		fc = new JFileChooser();
+//		int returnVal = fc.showOpenDialog(null);
+//		 
+//        if (returnVal == JFileChooser.APPROVE_OPTION) {
+//            File file = fc.getSelectedFile();
+//
+//        } else {
+//                }
+//
+//			
+//		      try // open file
+//		      {
+//		    	  if(fc.getSelectedFile()!=null)
+//		    		  input = new RandomAccessFile( fc.getSelectedFile(), "r" );
+//		      } // end try
+//		      catch ( IOException ioException )
+//		      {
+//		    	  JOptionPane.showMessageDialog(null, "File Does Not Exist.");
+//		      } // end catch
+//			
+//	   } // end method openFile
+//	
 	static String fileToSaveAs = "";
 	
 	public static void openFileWrite()
@@ -781,7 +781,7 @@ public static void saveToFile(){
 	}
 	
 	public static void readFile(){
-	    openFileRead();
+	   // openFileRead();
 	    readRecords();
 	    closeFile();		
 	}
