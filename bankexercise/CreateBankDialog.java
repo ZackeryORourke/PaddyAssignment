@@ -6,7 +6,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Hashtable;
 import java.util.Map;
 import java.util.Random;
 
@@ -22,15 +21,14 @@ import net.miginfocom.swing.MigLayout;
 
 public class CreateBankDialog extends JFrame {
 
-	
+
+	private static final long serialVersionUID = 1L;
 	private final static int TABLE_SIZE = 29;
 	Random rand = new Random();
 	
 	ArrayList<BankAccount> accountList;
 
 	HashMap<Integer, BankAccount> table = new HashMap<Integer, BankAccount>();
-	
-	
 	
 	
 	public void put(int key, BankAccount value){
@@ -50,11 +48,11 @@ public class CreateBankDialog extends JFrame {
 	JLabel accountIDLabel, accountNumberLabel, firstNameLabel, surnameLabel, accountTypeLabel, balanceLabel, overdraftLabel;
 	
 	
-	JComboBox comboBox;
+	JComboBox<?> comboBox;
 	JTextField accountNumberTextField;
 	final JTextField firstNameTextField, surnameTextField, accountTypeTextField, balanceTextField, overdraftTextField;
 	
-	CreateBankDialog(HashMap accounts) {
+	CreateBankDialog(HashMap<Integer, BankAccount> accounts) {
 		
 		super("Add Bank Details");
 		
@@ -72,7 +70,7 @@ public class CreateBankDialog extends JFrame {
 		
 		String[] comboTypes = {"Current", "Deposit"};
 		
-		final JComboBox comboBox = new JComboBox(comboTypes);
+		final JComboBox<?> comboBox = new JComboBox<Object>(comboTypes);
 		
 		
 		accountNumberLabel = new JLabel("Photograph file name: ");
@@ -148,19 +146,9 @@ public class CreateBankDialog extends JFrame {
 			
 				String accountType = comboBox.getSelectedItem().toString();
 				
-				String balanceStr = balanceTextField.getText();
-				String overdraftStr = overdraftTextField.getText();
-				
-				
-
-				double balance;
-				double overdraft;
-				
-		
 				if (accountNumber != null && accountNumber.length()==8 && surname != null && firstName != null && accountType != null) {
 					try {
 						
-						boolean idTaken = false;
 						boolean accNumTaken=false;
 							
 							int randNumber = rand.nextInt(24) + 1;
@@ -168,7 +156,6 @@ public class CreateBankDialog extends JFrame {
 						 for (Map.Entry<Integer, BankAccount> entry : table.entrySet()) {
 							 
 							 while(randNumber == entry.getValue().getAccountID()){
-								 idTaken = true;
 								 randNumber = rand.nextInt(24)+1;
 							 }		 
 						 }
