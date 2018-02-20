@@ -113,6 +113,7 @@ public class BankApplication extends JFrame {
 		buttonPanel.add(prevItemButton);
 		buttonPanel.add(nextItemButton);
 		buttonPanel.add(lastItemButton);
+		//Test for commit
 		
 		add(buttonPanel, BorderLayout.SOUTH);
 		
