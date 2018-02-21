@@ -22,7 +22,6 @@ public class BankAccount {
 		this.balance = balance;
 		this.overdraft = overdraft;
 	}
-	//test
 	
 	public BankAccount(){
 		this(0, "", "", "", "", 0.0, 0.0);
