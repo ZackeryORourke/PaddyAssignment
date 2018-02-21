@@ -113,7 +113,7 @@ public class BankApplication extends JFrame {
 		buttonPanel.add(prevItemButton);
 		buttonPanel.add(nextItemButton);
 		buttonPanel.add(lastItemButton);
-		//Test for commit
+	
 		
 		add(buttonPanel, BorderLayout.SOUTH);
 		
@@ -242,7 +242,6 @@ public class BankApplication extends JFrame {
 					displayDetails(currentItem);			
 			}
 		};
-		
 		
 
 		ActionListener prev = new ActionListener() {
@@ -410,6 +409,7 @@ public class BankApplication extends JFrame {
 			}
 		});	
 		
+	
 		findBySurname.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				
@@ -418,15 +418,17 @@ public class BankApplication extends JFrame {
 				
 				 for (Map.Entry<Integer, BankAccount> entry : table.entrySet()) {
 					   
-					 if(sName.equalsIgnoreCase((entry.getValue().getSurname().trim()))){
+					 BankAccount value = entry.getValue();
+					 
+					if(sName.equalsIgnoreCase((value.getSurname().trim()))){
 						 found = true;
-						 accountIDTextField.setText(entry.getValue().getAccountID()+"");
-						 accountNumberTextField.setText(entry.getValue().getAccountNumber());
-						 surnameTextField.setText(entry.getValue().getSurname());
-						 firstNameTextField.setText(entry.getValue().getFirstName());
-						 accountTypeTextField.setText(entry.getValue().getAccountType());
-						 balanceTextField.setText(entry.getValue().getBalance()+"");
-						 overdraftTextField.setText(entry.getValue().getOverdraft()+"");
+						 accountIDTextField.setText(value.getAccountID()+"");
+						 accountNumberTextField.setText(value.getAccountNumber());
+						 surnameTextField.setText(value.getSurname());
+						 firstNameTextField.setText(value.getFirstName());
+						 accountTypeTextField.setText(value.getAccountType());
+						 balanceTextField.setText(value.getBalance()+"");
+						 overdraftTextField.setText(value.getOverdraft()+"");
 					 }
 				 }		
 				 if(found)
@@ -444,15 +446,16 @@ public class BankApplication extends JFrame {
 			
 				 for (Map.Entry<Integer, BankAccount> entry : table.entrySet()) {
 					   
-					 if(accNum.equals(entry.getValue().getAccountNumber().trim())){
+					 BankAccount value = entry.getValue();
+					if(accNum.equals(value.getAccountNumber().trim())){
 						 found = true;
-						 accountIDTextField.setText(entry.getValue().getAccountID()+"");
-						 accountNumberTextField.setText(entry.getValue().getAccountNumber());
-						 surnameTextField.setText(entry.getValue().getSurname());
-						 firstNameTextField.setText(entry.getValue().getFirstName());
-						 accountTypeTextField.setText(entry.getValue().getAccountType());
-						 balanceTextField.setText(entry.getValue().getBalance()+"");
-						 overdraftTextField.setText(entry.getValue().getOverdraft()+"");						
+						 accountIDTextField.setText(value.getAccountID()+"");
+						 accountNumberTextField.setText(value.getAccountNumber());
+						 surnameTextField.setText(value.getSurname());
+						 firstNameTextField.setText(value.getFirstName());
+						 accountTypeTextField.setText(value.getAccountType());
+						 balanceTextField.setText(value.getBalance()+"");
+						 overdraftTextField.setText(value.getOverdraft()+"");						
 						 
 					 }			 
 				 }
@@ -470,10 +473,11 @@ public class BankApplication extends JFrame {
 				boolean found = false;
 				
 				for (Map.Entry<Integer, BankAccount> entry : table.entrySet()) {
-					if(accNum.equals(entry.getValue().getAccountNumber().trim())){
+					BankAccount value = entry.getValue();
+					if(accNum.equals(value.getAccountNumber().trim())){
 						found = true;
 						String toDeposit = JOptionPane.showInputDialog("Account found, Enter Amount to Deposit: ");
-						entry.getValue().setBalance(entry.getValue().getBalance() + Double.parseDouble(toDeposit));
+						value.setBalance(value.getBalance() + Double.parseDouble(toDeposit));
 						displayDetails(entry.getKey());
 						//balanceTextField.setText(entry.getValue().getBalance()+"");
 					}
@@ -490,19 +494,20 @@ public class BankApplication extends JFrame {
 				for (Map.Entry<Integer, BankAccount> entry : table.entrySet()) {
 					
 
-					if(accNum.equals(entry.getValue().getAccountNumber().trim())){
+					BankAccount value = entry.getValue();
+					if(accNum.equals(value.getAccountNumber().trim())){
 						
-						if(entry.getValue().getAccountType().trim().equals("Current")){
-							if(Double.parseDouble(toWithdraw) > entry.getValue().getBalance() + entry.getValue().getOverdraft())
+						if(value.getAccountType().trim().equals("Current")){
+							if(Double.parseDouble(toWithdraw) > value.getBalance() + value.getOverdraft())
 								JOptionPane.showMessageDialog(null, "Transaction exceeds overdraft limit");
 							else{
-								entry.getValue().setBalance(entry.getValue().getBalance() - Double.parseDouble(toWithdraw));
+								value.setBalance(value.getBalance() - Double.parseDouble(toWithdraw));
 								displayDetails(entry.getKey());
 							}
 						}
-						else if(entry.getValue().getAccountType().trim().equals("Deposit")){
-							if(Double.parseDouble(toWithdraw) <= entry.getValue().getBalance()){
-								entry.getValue().setBalance(entry.getValue().getBalance()-Double.parseDouble(toWithdraw));
+						else if(value.getAccountType().trim().equals("Deposit")){
+							if(Double.parseDouble(toWithdraw) <= value.getBalance()){
+								value.setBalance(value.getBalance()-Double.parseDouble(toWithdraw));
 								displayDetails(entry.getKey());
 							}
 							else
@@ -540,14 +545,15 @@ public class BankApplication extends JFrame {
 	
 	public void displayDetails(int currentItem) {	
 				
-		accountIDTextField.setText(table.get(currentItem).getAccountID()+"");
-		accountNumberTextField.setText(table.get(currentItem).getAccountNumber());
-		surnameTextField.setText(table.get(currentItem).getSurname());
-		firstNameTextField.setText(table.get(currentItem).getFirstName());
-		accountTypeTextField.setText(table.get(currentItem).getAccountType());
-		balanceTextField.setText(table.get(currentItem).getBalance()+"");
+		BankAccount tableItems = table.get(currentItem);
+		accountIDTextField.setText(tableItems.getAccountID()+"");
+		accountNumberTextField.setText(tableItems.getAccountNumber());
+		surnameTextField.setText(tableItems.getSurname());
+		firstNameTextField.setText(tableItems.getFirstName());
+		accountTypeTextField.setText(tableItems.getAccountType());
+		balanceTextField.setText(tableItems.getBalance()+"");
 		if(accountTypeTextField.getText().trim().equals("Current"))
-			overdraftTextField.setText(table.get(currentItem).getOverdraft()+"");
+			overdraftTextField.setText(tableItems.getOverdraft()+"");
 		else
 			overdraftTextField.setText("Only applies to current accs");
 	
