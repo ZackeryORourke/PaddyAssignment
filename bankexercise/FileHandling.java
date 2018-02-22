@@ -75,15 +75,13 @@ public static void readRecords()
          {
          	if(input!=null)
          		record.read( input );
-         } while ( record.getAccountID() == 0 );
+         } while ( record.getAccountID() == 0  ); //seems to be getting stuck in a constant loop here, input is null
 
-    
-         
          BankAccount ba = new BankAccount(record.getAccountID(), record.getAccountNumber(), record.getFirstName(),
                  record.getSurname(), record.getAccountType(), record.getBalance(), record.getOverdraft());
          
          
-         Integer key = Integer.valueOf(ba.getAccountNumber().trim());
+         Integer key = Integer.valueOf(ba.getAccountNumber().trim()); 
 		
 			int hash = (key%TABLE_SIZE);
 	

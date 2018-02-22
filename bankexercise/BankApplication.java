@@ -3,9 +3,6 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.EOFException;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
@@ -586,7 +583,7 @@ public class BankApplication extends JFrame {
 
 
 	public static void writeFile(){
-		 FileHandling.openFileWrite();
+	
 		 FileHandling.saveToFile();
 		//addRecords();
 		 FileHandling.closeFile();
@@ -599,6 +596,7 @@ public class BankApplication extends JFrame {
 	}
 	
 	public static void readFile(){
+		FileHandling.openFileWrite();
 	    FileHandling.readRecords();
 	    FileHandling.closeFile();		
 	}
