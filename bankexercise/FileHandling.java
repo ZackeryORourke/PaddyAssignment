@@ -32,7 +32,36 @@ public class FileHandling extends BankApplication {
 			saveToFileAs();
 	   }
 
+	public static void openFileRead()
+	   {
+		
+		table.clear();
+			
+		fc = new JFileChooser();
+		int returnVal = fc.showOpenDialog(null);
+		 
+     if (returnVal == JFileChooser.APPROVE_OPTION) {
+         @SuppressWarnings("unused")
+		File file = fc.getSelectedFile();
+
+     } else {
+             }
+
+			
+		      try // open file
+		      {
+		    	  if(fc.getSelectedFile()!=null)
+		    		  input = new RandomAccessFile( fc.getSelectedFile(), "r" );
+		      } // end try
+		      catch ( IOException ioException )
+		      {
+		    	  JOptionPane.showMessageDialog(null, "File Does Not Exist.");
+		      } // end catch
+			
+	   } // end method openFile
 	
+	static String fileToSaveAs = "";
+
 	
 public static void saveToFile(){
 		
@@ -59,6 +88,8 @@ public static void saveToFile(){
 			   
 			}
 	}
+
+
 
 public static void readRecords()
 {

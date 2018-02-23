@@ -124,7 +124,7 @@ public class BankApplication extends JFrame {
     	firstItem = new JMenuItem("First Item");
     	lastItem = new JMenuItem("Last Item");
     	findByAccount = new JMenuItem("Find by Account Number");
-    	findBySurname = new JMenuItem("Find by Surname");
+    	findBySurname = new JMenuItem("Find by Last Name");
     	listAll = new JMenuItem("List All Records");
     	
     	navigateMenu.add(nextItem);
@@ -577,15 +577,10 @@ public class BankApplication extends JFrame {
 			 FileHandling.saveToFileAs();
 	   }
 
-	
-
-	
-
 
 	public static void writeFile(){
 	
 		 FileHandling.saveToFile();
-		//addRecords();
 		 FileHandling.closeFile();
 	}
 	
@@ -596,7 +591,7 @@ public class BankApplication extends JFrame {
 	}
 	
 	public static void readFile(){
-		FileHandling.openFileWrite();
+		FileHandling.openFileRead();
 	    FileHandling.readRecords();
 	    FileHandling.closeFile();		
 	}
